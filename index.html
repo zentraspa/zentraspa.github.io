@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zentra SpA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     BARRA DE NAVEGACIÓN
+     El logo lleva al inicio al hacer clic. El botón hamburguesa
+     aparece solo en móvil (controlado desde styles.css).
+     ============================================================ -->
+<nav>
+  <a href="#inicio"><img src="images/zentra logo2 sf.png" alt="Zentra SpA" class="logo_nav"></a>
+  <button class="nav-toggle" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li><a href="#quienes">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#compromiso">Compromiso</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     SECCIÓN HERO — PANTALLA DE INICIO
+     Ocupa toda la pantalla. Contiene el logo principal y el subtítulo.
+     id="inicio" es el destino del clic en el logo del nav y footer.
+     ============================================================ -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <img src="images/zentra logo sf.png" alt="Zentra SpA" class="logo">
+    <p class="fade-in delay-1">Tecnología que protege, soluciones que responden</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECCIÓN QUIÉNES SOMOS / QUÉ HACEMOS
+     Dos tarjetas en columnas. Edita el texto dentro de cada <p>.
+     ============================================================ -->
+<section id="quienes">
+  <div class="section-inner">
+    <div class="two-col">
+      <div class="card reveal">
+        <p class="section-label">Identidad</p>
+        <h3>Quiénes somos</h3>
+        <div class="divider"></div>
+        <p>Zentra SpA es una empresa chilena especializada en el diseño, implementación y operación de sistemas de seguridad física y electrónica, orientada a organizaciones que requieren altos estándares de confiabilidad, calidad técnica y continuidad operacional.</p>
+        <p>Actuamos como un socio técnico, integrándonos a los procesos del cliente y adaptando cada solución a sus necesidades operativas específicas.</p>
+      </div>
+      <div class="card reveal">
+        <p class="section-label">Alcance</p>
+        <h3>Qué hacemos</h3>
+        <div class="divider"></div>
+        <p>Proveemos servicios integrales en sistemas de seguridad, cubriendo todas las etapas del ciclo del proyecto: desde el levantamiento técnico y suministro de equipos, hasta la puesta en marcha, integración y soporte continuo.</p>
+        <p>Abordamos tanto soluciones estándar como implementaciones de mayor complejidad, siempre con foco en la correcta operación en terreno.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECCIÓN NUESTROS SERVICIOS
+     Lista de rectángulos horizontales. Para agregar un servicio,
+     copia un bloque <div class="service-item reveal"> completo.
+     ============================================================ -->
+<section id="servicios" class="services-section">
+  <div class="section-inner">
+    <p class="section-label reveal">Oferta de valor</p>
+    <h2 class="section-title reveal">Nuestros servicios</h2>
+    <div class="divider reveal"></div>
+    <p style="color:var(--text-secondary);max-width:600px;font-weight:300;font-size:0.93rem;" class="reveal">Cubrimos el ciclo completo de cada proyecto de seguridad, garantizando coherencia técnica desde la concepción hasta el soporte post-implementación.</p>
+    <div class="service-list">
+      <div class="service-item reveal">
+        <div class="service-dot"></div>
+        <div><strong>Levantamiento técnico</strong><p>Diagnóstico y análisis de requerimientos operacionales en terreno.</p></div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-dot"></div>
+        <div><strong>Suministro de equipos</strong><p>Selección y provisión de equipamiento de estándar industrial.</p></div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-dot"></div>
+        <div><strong>Instalación y puesta en marcha</strong><p>Ejecución con protocolos rigurosos y mínima interrupción operacional.</p></div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-dot"></div>
+        <div><strong>Integración de sistemas</strong><p>Convergencia de plataformas y tecnologías en un entorno unificado.</p></div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-dot"></div>
+        <div><strong>Soporte continuo</strong><p>Acompañamiento técnico permanente para la correcta operación.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECCIÓN CÓMO TRABAJAMOS / EXPERIENCIA
+     Misma estructura de dos tarjetas que la sección de arriba.
+     ============================================================ -->
+<section id="experiencia">
+  <div class="section-inner">
+    <div class="two-col">
+      <div class="card reveal">
+        <p class="section-label">Metodología</p>
+        <h3>Cómo trabajamos</h3>
+        <div class="divider"></div>
+        <p>Nos integramos a la operación del cliente con un enfoque ordenado, seguro y trazable, respetando protocolos internos, estándares de seguridad y exigencias operacionales.</p>
+        <p>Nuestro foco está en ejecutar soluciones que funcionen en terreno, minimizando fricciones operativas y generando resultados sostenibles. Utilizamos equipamiento de primera calidad seleccionado según criterios técnicos y confiabilidad.</p>
+      </div>
+      <div class="card reveal">
+        <p class="section-label">Trayectoria</p>
+        <h3>Experiencia</h3>
+        <div class="divider"></div>
+        <p>Zentra SpA cuenta con experiencia en la ejecución de servicios asociados a sistemas de seguridad para organizaciones de distintos rubros y tamaños, participando en proyectos de diversa envergadura y complejidad.</p>
+        <p>Nuestra experiencia se basa en la correcta implementación, operación en terreno y soporte técnico oportuno, alineados a los estándares de cada cliente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECCIÓN NUESTRO COMPROMISO
+     Lista de valores. Para agregar uno, copia un <div class="commit-row">.
+     ============================================================ -->
+<section id="compromiso">
+  <div class="section-inner">
+    <p class="section-label reveal">Valores</p>
+    <h2 class="section-title reveal">Nuestro compromiso</h2>
+    <div class="divider reveal"></div>
+    <p style="color:var(--text-secondary);max-width:540px;font-weight:300;font-size:0.93rem;" class="reveal">Cada proyecto refleja los principios que guían nuestra forma de trabajar y relacionarnos con nuestros clientes.</p>
+    <div class="commit-list reveal">
+      <div class="commit-row"><div class="commit-line"></div><span>Seguridad operacional</span></div>
+      <div class="commit-row"><div class="commit-line"></div><span>Calidad técnica</span></div>
+      <div class="commit-row"><div class="commit-line"></div><span>Cumplimiento de plazos</span></div>
+      <div class="commit-row"><div class="commit-line"></div><span>Comunicación clara y directa</span></div>
+      <div class="commit-row"><div class="commit-line"></div><span>Relaciones de largo plazo</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECCIÓN FORMULARIO DE CONTACTO
+     El formulario actualmente no envía datos (requiere backend o
+     servicio externo como Formspree). Ver comentario en el <form>.
+     ============================================================ -->
+<section id="contacto">
+  <div class="section-inner">
+    <div class="contact-wrap">
+      <div class="contact-info reveal">
+        <p class="section-label">Contacto</p>
+        <h2 class="section-title">Formulario de contacto</h2>
+        <div class="divider"></div>
+        <p>Complete el formulario y nos comunicaremos a la brevedad.</p>
+      </div>
+      <div class="contact-form reveal">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre <span class="req">*</span></label>
+            <input type="text" placeholder="Su nombre completo" required>
+          </div>
+          <div class="form-group">
+            <label>Correo electrónico <span class="req">*</span></label>
+            <input type="email" placeholder="correo@empresa.cl" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Empresa</label>
+            <input type="text" placeholder="Nombre de su empresa">
+          </div>
+          <div class="form-group">
+            <label>Teléfono <span class="req">*</span></label>
+            <input type="tel" placeholder="+56 9 XXXX XXXX" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Mensaje <span class="req">*</span></label>
+          <textarea placeholder="Cuéntenos brevemente en qué podemos ayudarle..."></textarea>
+        </div>
+        <button class="btn-send">Enviar mensaje →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     El logo lleva al inicio al hacer clic.
+     Actualiza el año del copyright cuando corresponda.
+     ============================================================ -->
+<footer>
+  <a href="#inicio"><img src="images/zentra logo2 sf.png" alt="Zentra SpA" class="logo_nav"></a>
+  <p>© 2026 Zentra SpA — Todos los derechos reservados</p>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     1. Scroll reveal: detecta cuando los elementos entran en pantalla
+        y les agrega la clase "visible" para activar la animación.
+     2. Menú hamburguesa: abre/cierra el menú en móvil y anima
+        las líneas del botón a una X.
+     ============================================================ -->
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll(".reveal");
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add("visible"), i * 55);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+
+  // Menú Hamburguesa
+  const toggle = document.querySelector(".nav-toggle");
+  const menu   = document.getElementById("nav-menu");
+  toggle.addEventListener("click", () => {
+    menu.classList.toggle("open");
+    toggle.classList.toggle("active");
+  });
+  // Menú se cierra al hacer click en un enlace
+  menu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("open");
+      toggle.classList.remove("active");
+    });
+  });
+</script>
+</body>
+</html>

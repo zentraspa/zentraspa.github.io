@@ -1,0 +1,478 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ============================================================
+   VARIABLES GLOBALES
+   Cambia estos valores para modificar toda la paleta de colores
+   del sitio de forma centralizada.
+   ============================================================ */
+  :root {
+    --bg-deep:       #040810;   /* Color de fondo principal de la página */
+    --bg-card:       #080f1e;   /* Fondo de las tarjetas (quiénes somos, experiencia, etc.) */
+    --bg-card2:      #0b1425;   /* Fondo alternativo (inputs, items de servicios) */
+    --accent-cyan:   #3ab8e0;   /* Color de acento principal (cyan/azul claro) */
+    --accent-blue:   #2d6de0;   /* Color de acento secundario (azul) */
+    --accent-purple: #6b44e0;   /* Color de acento terciario (púrpura) */
+    --text-primary:  #f0f4ff;   /* Color del texto principal (títulos, contenido importante) */
+    --text-secondary:#a8b8d8;   /* Color del texto secundario (descripciones, subtextos) */
+    --border: rgba(58,184,224,0.15); /* Color de los bordes de las tarjetas y divisores */
+  }
+
+/* ============================================================
+   COMPORTAMIENTO GENERAL
+   ============================================================ */
+  html { scroll-behavior: smooth; } /* Scroll suave al hacer clic en los enlaces del nav */
+
+  body {
+    font-family: "Inter", sans-serif; /* Fuente principal del cuerpo */
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    overflow-x: hidden; /* Evita scroll horizontal no deseado */
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+/* ============================================================
+   TEXTURA DE FONDO
+   Superposición de ruido sutil para dar profundidad al fondo.
+   Ajusta "opacity" para hacerlo más o menos visible.
+   ============================================================ */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.35;
+  }
+
+/* ============================================================
+   BARRA DE NAVEGACIÓN
+   Fija en la parte superior. Cambia "height" para hacerla
+   más alta o baja. Cambia "padding" para ajustar el espaciado lateral.
+   ============================================================ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 48px;
+    height: 70px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(4,8,16,0.88); /* Fondo semitransparente del nav */
+    backdrop-filter: blur(18px);   /* Efecto de desenfoque detrás del nav */
+    border-bottom: 1px solid var(--border);
+  }
+  nav img { height: 42px; } /* Tamaño del logo en el nav — ajusta este valor */
+  nav ul { list-style: none; display: flex; gap: 40px; } /* Espaciado entre items del menú */
+  nav ul a {
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    transition: color 0.25s;
+  }
+  nav ul a:hover { color: var(--accent-cyan); } /* Color al pasar el mouse */
+
+  /* Hace que el link del logo no genere espacio vertical extra */
+  nav a { line-height: 0; }
+
+/* ============================================================
+   BOTÓN HAMBURGUESA (visible solo en móvil)
+   Las tres líneas que aparecen en pantallas pequeñas.
+   Se anima a una X cuando el menú está abierto.
+   ============================================================ */
+  .nav-toggle {
+    display: none; /* Oculto en escritorio, se muestra en móvil */
+    flex-direction: column; justify-content: center; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px; z-index: 200;
+  }
+  .nav-toggle span {
+    display: block; width: 24px; height: 2px;
+    background: var(--text-primary); border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  /* Animación de las líneas al convertirse en X */
+  .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.active span:nth-child(2) { opacity: 0; }
+  .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================================================
+   ESTILOS RESPONSIVOS — MÓVIL (pantallas menores a 768px)
+   Todo lo que esté aquí dentro solo aplica en pantallas pequeñas.
+   ============================================================ */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    nav img { height: 44px; }
+    .nav-toggle { display: flex; } /* Muestra el botón hamburguesa */
+
+    /* Menú desplegable móvil */
+    #nav-menu {
+      display: flex; flex-direction: column;
+      position: fixed; top: 70px; left: 0; right: 0;
+      background: rgba(4,8,16,0.97);
+      backdrop-filter: blur(18px);
+      max-height: 0; overflow: hidden; padding: 0; /* Oculto por defecto */
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      border-bottom: 1px solid var(--border);
+      gap: 0; list-style: none;
+    }
+    #nav-menu.open { max-height: 400px; padding: 12px 0; } /* Visible cuando está abierto */
+    #nav-menu li { width: 100%; }
+    #nav-menu a {
+      display: block; padding: 14px 24px;
+      font-size: 0.9rem; letter-spacing: 0.08em;
+      border-bottom: 1px solid var(--border);
+    }
+    #nav-menu li:last-child a { border-bottom: none; }
+
+    /* Ajustes de hero en móvil */
+    .hero { padding: 100px 20px 60px; }
+    .hero-content .logo { height: 120px; } /* Logo más pequeño en móvil */
+    .hero p { font-size: 1rem; }
+
+    /* Secciones con menos padding en móvil */
+    .section-inner { padding: 64px 20px; }
+    .section-title { font-size: clamp(1.4rem, 5vw, 2rem); }
+
+    /* Servicios apilados verticalmente en móvil */
+    .service-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .service-item strong { white-space: normal; min-width: unset; }
+
+    /* Formulario en columna única en móvil */
+    .contact-wrap { grid-template-columns: 1fr; gap: 36px; }
+    .form-row { grid-template-columns: 1fr; }
+
+    /* Footer centrado en móvil */
+    footer { padding: 24px 20px; flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+    footer img { height: 42px; }
+  }
+
+/* ============================================================
+   RESPONSIVO — PANTALLAS MUY PEQUEÑAS (menos de 480px)
+   Ajustes adicionales para teléfonos pequeños.
+   ============================================================ */
+  @media (max-width: 480px) {
+    .hero-content .logo { height: 100px; }
+    .hero p { font-size: 0.95rem; }
+    .card { padding: 28px 22px; }
+    .section-inner { padding: 52px 16px; }
+    .btn-send { width: 100%; text-align: center; } /* Botón de ancho completo */
+  }
+
+/* ============================================================
+   SECCIÓN HERO (pantalla de inicio)
+   Ocupa el 100% de la altura de la pantalla.
+   ============================================================ */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative; overflow: hidden;
+  }
+
+  /* Gradientes de color de fondo del hero */
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(45,109,224,0.16) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(107,68,224,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 30% at 20% 80%, rgba(58,184,224,0.07) 0%, transparent 60%);
+  }
+
+  /* Cuadrícula decorativa del hero — ajusta los valores rgba para más/menos intensidad */
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(58,184,224,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(58,184,224,0.035) 1px, transparent 1px);
+    background-size: 64px 64px; /* Tamaño de las celdas de la cuadrícula */
+    mask-image: radial-gradient(ellipse 80% 80% at center, black 0%, transparent 70%);
+  }
+
+  /* Contenedor del contenido central del hero */
+  .hero-content { position: relative; z-index: 2; max-width: 720px; display: flex; flex-direction: column; align-items: center; }
+
+  /* Logo principal — cambia "height" para hacerlo más grande o pequeño */
+  .hero-content .logo { height: 160px; margin-bottom: 20px; filter: drop-shadow(0 0 36px rgba(58,184,224,0.22)); }
+
+  /* Título principal del hero (si se usara en lugar del logo) */
+  .hero h1 {
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem); /* Tamaño fluido: mín 2.8rem, máx 5rem */
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 22px;
+    /* Gradiente de texto — cambia los colores para variar el efecto */
+    background: linear-gradient(135deg, #f0f4ff 35%, var(--accent-cyan) 70%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subtítulo del hero */
+  .hero p {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.85;
+  }
+
+/* ============================================================
+   SECCIONES GENERALES
+   Estilos base compartidos por todas las secciones de contenido.
+   ============================================================ */
+  section { position: relative; z-index: 1; }
+  .section-inner p { text-align: justify; } /* Justifica todos los párrafos por defecto */
+  .section-inner { max-width: 1080px; margin: 0 auto; padding: 96px 24px; } /* Ancho máximo y padding de cada sección */
+
+  /* Etiqueta pequeña sobre los títulos (ej: "IDENTIDAD", "ALCANCE") */
+  .section-label {
+    font-family: "Inter", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 10px;
+  }
+
+  /* Título principal de cada sección */
+  .section-title {
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+  }
+
+  /* Línea divisora decorativa bajo los títulos */
+  .divider {
+    width: 36px; height: 2px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+    margin-bottom: 28px;
+    border-radius: 2px;
+  }
+
+/* ============================================================
+   GRILLA DE DOS COLUMNAS
+   Usada en las secciones "Quiénes somos/Qué hacemos"
+   y "Cómo trabajamos/Experiencia".
+   ============================================================ */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } } /* Una columna en móvil */
+
+/* ============================================================
+   TARJETAS DE CONTENIDO
+   Los bloques con borde y fondo oscuro.
+   Cambia "padding" para más/menos espacio interno.
+   ============================================================ */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px 36px;
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s, transform 0.35s;
+  }
+
+  /* Línea de luz en la parte superior al hacer hover */
+  .card::after {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .card:hover { border-color: rgba(58,184,224,0.3); transform: translateY(-3px); }
+  .card:hover::after { opacity: 1; }
+  .card .section-label { margin-bottom: 6px; }
+
+  /* Título dentro de la tarjeta */
+  .card h3 {
+    font-family: "Manrope", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.015em;
+  }
+
+  /* Párrafo dentro de la tarjeta */
+  .card p {
+    font-size: 0.93rem;
+    color: var(--text-secondary);
+    line-height: 1.85;
+    font-weight: 400;
+    text-align: justify;
+  }
+  .card p + p { margin-top: 14px; } /* Espacio entre párrafos consecutivos */
+
+/* ============================================================
+   SECCIÓN NUESTROS SERVICIOS
+   Lista de rectángulos horizontales apilados.
+   ============================================================ */
+  .services-section { background: linear-gradient(180deg, transparent, rgba(11,20,37,0.55), transparent); } /* Fondo sutil para diferenciar la sección */
+
+  /* Contenedor de la lista de servicios */
+  .service-list {
+    display: flex; flex-direction: column;
+    gap: 10px; margin-top: 44px;
+  }
+
+  /* Cada ítem de servicio (rectángulo horizontal) */
+  .service-item {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 28px;
+    display: flex; align-items: center; gap: 16px;
+    transition: border-color 0.3s, padding-left 0.3s;
+  }
+  .service-item:hover { border-color: rgba(58,184,224,0.35); padding-left: 36px; } /* Efecto deslizamiento al hover */
+
+  /* Punto decorativo de color al inicio de cada servicio */
+  .service-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(58,184,224,0.5);
+  }
+  .service-item strong { color: var(--text-primary); font-weight: 600; font-size: 0.95rem; white-space: nowrap; min-width: 220px; } /* Título del servicio */
+  .service-item p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; text-align: left; margin: 0; font-weight: 400; } /* Descripción del servicio */
+  @media (max-width: 600px) { .service-item strong { white-space: normal; min-width: unset; } }
+
+/* ============================================================
+   SECCIÓN NUESTRO COMPROMISO
+   Lista de valores con línea decorativa y efecto hover.
+   ============================================================ */
+  .commit-list { margin-top: 40px; display: flex; flex-direction: column; gap: 0; }
+
+  /* Cada fila de valor */
+  .commit-row {
+    display: flex; align-items: center; gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    transition: padding-left 0.3s; /* Se desplaza a la derecha al hover */
+  }
+  .commit-row:first-child { border-top: 1px solid var(--border); }
+  .commit-row:hover { padding-left: 10px; }
+
+  /* Línea decorativa de color a la izquierda de cada valor */
+  .commit-line {
+    width: 24px; height: 1px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+    flex-shrink: 0;
+  }
+  .commit-row span {
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+/* ============================================================
+   SECCIÓN FORMULARIO DE CONTACTO
+   Grilla de dos columnas: texto a la izquierda, formulario a la derecha.
+   ============================================================ */
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* El formulario ocupa más espacio que el texto */
+    gap: 64px; align-items: start;
+  }
+  @media (max-width: 768px) { .contact-wrap { grid-template-columns: 1fr; gap: 40px; } }
+  .contact-info p { color: var(--text-secondary); font-size: 0.93rem; line-height: 1.9; font-weight: 400; margin-bottom: 20px; text-align: justify; }
+
+  /* Formulario */
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; } /* Dos campos por fila */
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+  /* Grupo de campo (label + input) */
+  .form-group { display: flex; flex-direction: column; gap: 7px; }
+  .form-group label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* Estilo de los campos de texto */
+  .form-group input,
+  .form-group textarea {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: var(--text-primary);
+    font-family: "Inter", sans-serif;
+    font-size: 0.93rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+
+  /* Estado de foco en los campos */
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: rgba(58,184,224,0.45);
+    box-shadow: 0 0 0 3px rgba(58,184,224,0.06);
+  }
+  .form-group textarea { resize: vertical; min-height: 118px; } /* El textarea se puede redimensionar verticalmente */
+
+  /* Asterisco de campo obligatorio */
+  .req { color: var(--accent-cyan); }
+
+  /* Botón de envío */
+  .btn-send {
+    font-family: "Inter", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    border: none; cursor: pointer;
+    padding: 14px 34px;
+    border-radius: 8px;
+    align-self: flex-start;
+    box-shadow: 0 0 24px rgba(45,109,224,0.22);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .btn-send:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(45,109,224,0.42); }
+
+/* ============================================================
+   FOOTER
+   Barra inferior con logo y copyright.
+   ============================================================ */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 14px;
+  }
+  footer img { height: 34px; } /* Tamaño del logo en el footer */
+  footer p { font-size: 0.78rem; color: var(--text-secondary); letter-spacing: 0.02em; font-weight: 300; }
+
+/* ============================================================
+   ANIMACIONES
+   fadeUp: elementos que suben y aparecen al cargar.
+   reveal: elementos que se animan al hacer scroll.
+   ============================================================ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { opacity: 0; animation: fadeUp 0.9s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; }  /* Retraso corto */
+  .delay-2 { animation-delay: 0.25s; } /* Retraso medio */
+
+  /* Clase base para elementos que se revelan al hacer scroll */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  /* Cuando el elemento es visible en pantalla, se activa esta clase desde JS */
+  .reveal.visible { opacity: 1; transform: translateY(0); }
