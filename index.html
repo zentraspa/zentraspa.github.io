@@ -167,31 +167,33 @@
         <p>Complete el formulario y nos comunicaremos a la brevedad.</p>
       </div>
       <div class="contact-form reveal">
+        <form action="https://formspree.io/f/mvzvgggj" method="POST" style="display:flex;flex-direction:column;gap:14px;">
         <div class="form-row">
           <div class="form-group">
             <label>Nombre <span class="req">*</span></label>
-            <input type="text" placeholder="Su nombre completo" required>
+            <input type="text" name="nombre" placeholder="Su nombre completo" required>
           </div>
           <div class="form-group">
             <label>Correo electrónico <span class="req">*</span></label>
-            <input type="email" placeholder="correo@empresa.cl" required>
+            <input type="email" name="email" placeholder="correo@empresa.cl" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Empresa</label>
-            <input type="text" placeholder="Nombre de su empresa">
+            <input type="text" name="empresa" placeholder="Nombre de su empresa">
           </div>
           <div class="form-group">
             <label>Teléfono <span class="req">*</span></label>
-            <input type="tel" placeholder="+56 9 XXXX XXXX" required>
+            <input type="tel" name="telefono" placeholder="+56 9 XXXX XXXX" required>
           </div>
         </div>
         <div class="form-group">
           <label>Mensaje <span class="req">*</span></label>
-          <textarea placeholder="Cuéntenos brevemente en qué podemos ayudarle..."></textarea>
+          <textarea name="mensaje" placeholder="Cuéntenos brevemente en qué podemos ayudarle..."></textarea>
         </div>
-        <button class="btn-send">Enviar mensaje →</button>
+        <button type="submit" class="btn-send">Enviar mensaje →</button>
+        </form>
       </div>
     </div>
   </div>
