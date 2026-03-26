@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mensaje enviado — Zentra SpA</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .gracias-wrap {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+    position: relative;
+  }
+  .gracias-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(45,109,224,0.16) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(107,68,224,0.10) 0%, transparent 60%);
+  }
+  .gracias-content {
+    position: relative; z-index: 2;
+    max-width: 560px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 56px 48px;
+  }
+  .gracias-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(45,109,224,0.2), rgba(107,68,224,0.2));
+    border: 1px solid rgba(58,184,224,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    font-size: 1.8rem;
+  }
+  .gracias-content h1 {
+    font-family: "Manrope", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .gracias-content p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+  .btn-volver {
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    border: none; cursor: pointer;
+    padding: 14px 34px;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 0 24px rgba(45,109,224,0.22);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .btn-volver:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(45,109,224,0.42); }
+  .gracias-logo { height: 52px; margin-bottom: 36px; }
+  @media (max-width: 480px) {
+    .gracias-content { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="gracias-wrap">
+  <div class="gracias-bg"></div>
+  <div class="gracias-content">
+    <img src="images/zentra logo2 sf.png" alt="Zentra SpA" class="gracias-logo">
+    <div class="gracias-icon">✓</div>
+    <h1>¡Mensaje enviado!</h1>
+    <p>Gracias por contactarnos. Recibimos su mensaje, nos comunicaremos con usted a la brevedad.</p>
+    <a href="index.html" class="btn-volver">Volver al inicio</a>
+  </div>
+</div>
+</body>
+</html>
