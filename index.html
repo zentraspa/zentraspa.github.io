@@ -167,34 +167,31 @@
         <p>Complete el formulario y nos comunicaremos a la brevedad.</p>
       </div>
       <div class="contact-form reveal">
-        <form action="https://formspree.io/f/mvzvgggj" method="POST" style="display:flex;flex-direction:column;gap:14px;">
-        <input type="hidden" name="_next" value="https://zentraspa.com/gracias.html">
         <div class="form-row">
           <div class="form-group">
             <label>Nombre <span class="req">*</span></label>
-            <input type="text" name="nombre" placeholder="Su nombre completo" required>
+            <input type="text" id="nombre" placeholder="Su nombre completo" required>
           </div>
           <div class="form-group">
             <label>Correo electrónico <span class="req">*</span></label>
-            <input type="email" name="email" placeholder="correo@empresa.cl" required>
+            <input type="email" id="email" placeholder="correo@empresa.cl" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Empresa</label>
-            <input type="text" name="empresa" placeholder="Nombre de su empresa">
+            <input type="text" id="empresa" placeholder="Nombre de su empresa">
           </div>
           <div class="form-group">
             <label>Teléfono <span class="req">*</span></label>
-            <input type="tel" name="telefono" placeholder="+56 9 XXXX XXXX" required>
+            <input type="tel" id="telefono" placeholder="+56 9 XXXX XXXX" required>
           </div>
         </div>
         <div class="form-group">
           <label>Mensaje <span class="req">*</span></label>
-          <textarea name="mensaje" placeholder="Cuéntenos brevemente en qué podemos ayudarle..."></textarea>
+          <textarea id="mensaje" placeholder="Cuéntenos brevemente en qué podemos ayudarle..."></textarea>
         </div>
-        <button type="submit" class="btn-send">Enviar mensaje →</button>
-        </form>
+        <button class="btn-send" id="btn-enviar">Enviar mensaje →</button>
       </div>
     </div>
   </div>
@@ -230,7 +227,43 @@
   }, { threshold: 0.08 });
   reveals.forEach(el => obs.observe(el));
 
-  // Menú Hamburguesa
+  // Formulario de contacto → Supabase Edge Function
+  const btnEnviar = document.getElementById('btn-enviar');
+  btnEnviar.addEventListener('click', async () => {
+    const nombre   = document.getElementById('nombre').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const empresa  = document.getElementById('empresa').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const mensaje  = document.getElementById('mensaje').value.trim();
+
+    if (!nombre || !email || !telefono || !mensaje) {
+      alert('Por favor complete todos los campos obligatorios.');
+      return;
+    }
+
+    btnEnviar.textContent = 'Enviando...';
+    btnEnviar.disabled = true;
+
+    try {
+      const res = await fetch('https://flohbcaktgpwkdvijcwv.supabase.co/functions/v1/contacto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email, empresa, telefono, mensaje })
+      });
+
+      if (res.ok) {
+        window.location.href = 'gracias.html';
+      } else {
+        alert('Hubo un error al enviar el mensaje. Por favor intente nuevamente.');
+        btnEnviar.textContent = 'Enviar mensaje →';
+        btnEnviar.disabled = false;
+      }
+    } catch(err) {
+      alert('Hubo un error al enviar el mensaje. Por favor intente nuevamente.');
+      btnEnviar.textContent = 'Enviar mensaje →';
+      btnEnviar.disabled = false;
+    }
+  });
   const toggle = document.querySelector(".nav-toggle");
   const menu   = document.getElementById("nav-menu");
   toggle.addEventListener("click", () => {
